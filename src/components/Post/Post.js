@@ -1,14 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const Post = (props) => {
     const { id, title, body } = props.post;
+    const history = useHistory();
+    const detail = (id) => {
+        const url = `/post/${id}`;
+        history.push(url);
+    }
     return (
         <div>
             <h5>Title:{title}</h5>
             <p>{body}</p>
-
-            <Link to={`/post/${id}`}><button>Detail</button></Link>
+            <button onClick={() => detail(id)}>Details</button>
         </div>
     );
 };
